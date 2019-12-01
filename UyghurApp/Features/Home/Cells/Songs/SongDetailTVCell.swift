@@ -14,7 +14,7 @@ class SongDetailTVCell: UITableViewCell {
     @IBOutlet weak var imageSong: UIImageView!
     @IBOutlet weak var nameSong: UILabel!
     @IBOutlet weak var singerName: UILabel!
-    @IBOutlet weak var playImage: UIImageView!
+    @IBOutlet weak var playButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

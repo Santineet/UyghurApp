@@ -12,12 +12,16 @@ class SongsTVCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var audios = [AudiosModel]()
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         setupCollectionView()
     }
 
+
+    
     //MARK: - setup CollectionView
     private func setupCollectionView(){
         collectionView.delegate = self
@@ -39,14 +43,24 @@ extension SongsTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     //MARK: - CollectionView numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.audios.count <= 3 {
+            return 1
+        } else if self.audios.count % 3 == 0 {
+            return self.audios.count  % 3
+        } else {
+             return self.audios.count  % 3 + 1
+        }
         
-        return 2
     }
     
     //MARK: - CollectionView cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongsCVCell", for: indexPath) as! SongsCVCell
+        cell.audios = audios
+        cell.index = indexPath.row
+        
+        cell.tableView.reloadData()
         
         return cell
     }
@@ -59,7 +73,6 @@ extension SongsTVCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-
     }
 
         

@@ -11,6 +11,7 @@ import UIKit
 class DictionaryTVCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    public var categories = [DictionaryCategoriesModel]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,8 +44,13 @@ extension DictionaryTVCell: UICollectionViewDelegate, UICollectionViewDataSource
     //MARK: -  UICollectionView numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 1
-        
+        if self.categories.count <= 3 {
+                return 1
+            } else if self.categories.count % 3 == 0 {
+                return self.categories.count  % 3
+            } else {
+                 return self.categories.count  % 3 + 1
+            }
     }
     
     //MARK: -  UICollectionView cellForItemAt
@@ -52,6 +58,10 @@ extension DictionaryTVCell: UICollectionViewDelegate, UICollectionViewDataSource
      
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DictionaryCVCell", for: indexPath) as! DictionaryCVCell
     
+        cell.index = indexPath.row
+        cell.categories = self.categories
+        cell.tableView.reloadData()
+        print("category 2 \(self.categories.count)")
         return cell
     }
     

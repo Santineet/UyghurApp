@@ -10,6 +10,7 @@ import UIKit
 
 class NewsCVCell: UICollectionViewCell {
     
+    @IBOutlet weak var playImage: UIImageView!
     @IBOutlet weak var imageNews: UIImageView!
     @IBOutlet weak var titleNews: UILabel!
     

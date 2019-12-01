@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>590723888370-7m4c0otkciq3g4jllv7ds90j72rks5sc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.590723888370-7m4c0otkciq3g4jllv7ds90j72rks5sc</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>590723888370-1gtthtealhro05gjng6t2oua0nf5mapg.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD5_BuzJdzQbC_Sdgi6ox9IU_kMKQEypBQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>590723888370</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yashlikavazi.Uyghur-App</string>
+	<key>PROJECT_ID</key>
+	<string>yashliq-avazi</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yashliq-avazi.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:590723888370:ios:d99b83a4869db1bc9bcc6b</string>
+	<key>DATABASE_URL</key>
+	<string>https://yashliq-avazi.firebaseio.com</string>
+</dict>
+</plist>

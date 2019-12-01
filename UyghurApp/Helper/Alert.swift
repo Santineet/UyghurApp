@@ -1,9 +1,9 @@
 //
 //  Alert.swift
-//  BitcoinTest
+//  UyghurApp
 //
-//  Created by Kuba Kadyrbekov on 7/30/19.
-//  Copyright © 2019 Kuba Kadyrbekov. All rights reserved.
+//  Created by Mairambek on 11/26/19.
+//  Copyright © 2019 YashlikAvazi. All rights reserved.
 //
 
 import UIKit
@@ -16,5 +16,4 @@ struct Alert {
         alertController.addAction(OKAction)
         vc.present(alertController, animated: true, completion: nil)
     }
-    
 }

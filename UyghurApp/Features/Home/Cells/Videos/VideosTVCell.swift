@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideosTVCell: UITableViewCell {
 
     
+    @IBOutlet weak var videoLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    public var videos = [VideosModel]()
+//    private var images = [UIImage]()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupColletionView()
@@ -30,8 +35,8 @@ class VideosTVCell: UITableViewCell {
     
     
     @IBAction func allVideos(_ sender: UIButton) {
-    }
     
+    }
 
 }
 
@@ -39,15 +44,24 @@ extension VideosTVCell: UICollectionViewDataSource, UICollectionViewDelegate {
    
     //MARK: -  UICollectionView numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 3
+        return self.videos.count
         
     }
     
     //MARK: -  UICollectionView cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let video = self.videos[indexPath.row]
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideosCVCell", for: indexPath) as! VideosCVCell
+        cell.title.text = video.title
+        
+        if let thumbnailIndex = video.thumbnailIndex {
+            cell.imagePreview.image = video.images[thumbnailIndex]
+        } else {
+            cell.imagePreview.image = UIImage(named: "videoPlayer")
+        }
+        
         return cell
     }
 }
