@@ -21,7 +21,8 @@ class HomeVC: UIViewController {
     private var videos = [VideosModel]()
     private var categories = [DictionaryCategoriesModel]()
     private var products = [StoreModel]()
-    
+    private var histories = [HistoriesModel]()
+
     let dispatchGroup = DispatchGroup()
     
     
@@ -52,6 +53,8 @@ class HomeVC: UIViewController {
         getCategories()
         dispatchGroup.enter()
         getProducts()
+        dispatchGroup.enter()
+        getHistories()
         dispatchGroup.notify(queue: .main) {
             
             self.tableView.reloadData()
@@ -60,6 +63,25 @@ class HomeVC: UIViewController {
         
     }
 
+    //MARK: - request Histories
+    private func getHistories(){
+        
+        homeVM.getHistories { (error) in
+            if let error = error {
+                self.dispatchGroup.leave()
+                Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            }
+        }
+        
+        homeVM.historiesBR.skip(1).subscribe(onNext: { (historiesArray) in
+            self.histories = historiesArray
+            self.dispatchGroup.leave()
+            }).disposed(by: disposeBag)
+        
+        homeVM.errorhistoriesBR.skip(1).subscribe(onNext: { (error) in                self.dispatchGroup.leave()
+            Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+            }).disposed(by: disposeBag)
+    }
     
     //MARK: - request Products
     private func getProducts(){
@@ -92,7 +114,6 @@ class HomeVC: UIViewController {
         
         homeVM.categoriesBR.skip(1).subscribe(onNext: { (categoriesArray) in
             self.categories = categoriesArray
-            print("category \(self.categories.count)")
             self.dispatchGroup.leave()
         }).disposed(by: disposeBag)
         
@@ -169,7 +190,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     //MARK: - cellForRowAt
@@ -208,6 +229,22 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             cell.collectionView.reloadData()
             
             return cell
+        case 5:
+            if histories.count >= 3 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTVCell", for: indexPath) as! HistoryTVCell
+                cell.selectionStyle = .none
+                cell.firstImage.sd_setImage(with: URL(string: self.histories[0].image_url ), placeholderImage: nil)
+                cell.firstTitle.text = self.histories[0].title
+                
+                cell.secondImage.sd_setImage(with: URL(string: self.histories[1].image_url), placeholderImage: nil)
+                cell.secondTitle.text = self.histories[1].title
+                cell.thirdImage.sd_setImage(with: URL(string: self.histories[2].image_url), placeholderImage: nil)
+                cell.thirdTitle.text = self.histories[2].title
+                
+                return cell
+            }
+            
+            return UITableViewCell()
         default:
             return UITableViewCell()
         }
@@ -227,6 +264,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return 210
         case 4:
             return 260
+        case 5:
+            return 345
         default:
             return 100
         }

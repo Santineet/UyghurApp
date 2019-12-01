@@ -23,6 +23,28 @@ class ServiceManager: NSObject {
     static let instance = ServiceManager()
     typealias Completion = (_ response: Any?, _ error: Error?) -> ()
     typealias onCompletion =  ((EventType, NewsModel) -> Void)
+  
+    func getHistories(completion: @escaping Completion){
+        
+        FIRRefManager.instance.historiesRef.getDocuments { (querySnapshot, error) in
+                        
+            if let error = error {
+                completion(nil, error)
+            } else {
+                
+           guard let snapshot = querySnapshot else { return }
+                var histories = [HistoriesModel]()
+                for document in snapshot.documents {
+                    guard let history = Mapper<HistoriesModel>().map(JSON: document.data()) else { return }
+                    histories.append(history)
+                    if histories.count == snapshot.documents.count {
+                        completion(histories, nil)
+                    }
+                }
+            }
+        }
+    }
+    
     
     func getStoreProducts(completion: @escaping Completion){
         

@@ -17,8 +17,9 @@ class HomeViewModel: NSObject {
     let videosBR = BehaviorRelay<[VideosModel]>(value: [])
     let categoriesBR = BehaviorRelay<[DictionaryCategoriesModel]>(value: [])
     let storeBR = BehaviorRelay<[StoreModel]>(value: [])
+    let historiesBR = BehaviorRelay<[HistoriesModel]>(value: [])
     let errorStoreBR = BehaviorRelay<Error>(value: NSError.init())
-
+    let errorhistoriesBR = BehaviorRelay<Error>(value: NSError.init())
     let errorCategoriesBR = BehaviorRelay<Error>(value: NSError.init())
     let errorNewsBR = BehaviorRelay<Error>(value: NSError.init())
     let errorAudiosBR = BehaviorRelay<Error>(value: NSError.init())
@@ -103,5 +104,22 @@ class HomeViewModel: NSObject {
              completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
          }
      }
+    
+    func getHistories(completion: @escaping (Error?) -> ()){
+         if Network.instance.isConnected() == true {
+            ServiceManager.instance.getHistories { (historyArray, error) in
+                
+                 if let error = error {
+                     self.errorhistoriesBR.accept(error)
+                 } else {
+                     guard let histories = historyArray as? [HistoriesModel] else { return }
+                     self.historiesBR.accept(histories)
+                 }
+             }
+         } else {
+             completion(NSError.init(message: "Для получения данных требуется подключение к интернету"))
+         }
+     }
+    
     
 }

@@ -61,7 +61,6 @@ extension DictionaryTVCell: UICollectionViewDelegate, UICollectionViewDataSource
         cell.index = indexPath.row
         cell.categories = self.categories
         cell.tableView.reloadData()
-        print("category 2 \(self.categories.count)")
         return cell
     }
     

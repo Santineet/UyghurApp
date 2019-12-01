@@ -43,6 +43,8 @@
 		2E9F19B22392F3D800FBBCCC /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F19B12392F3D800FBBCCC /* StoreModel.swift */; };
 		2E9F19B42393BB9E00FBBCCC /* videoPlayer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E9F19B32393BB9E00FBBCCC /* videoPlayer.jpg */; };
 		2E9F19B62393F1FA00FBBCCC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F19B52393F1FA00FBBCCC /* HomeVC.swift */; };
+		2E9F19B92394146600FBBCCC /* HistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F19B82394146600FBBCCC /* HistoryTVCell.swift */; };
+		2E9F19BB2394163000FBBCCC /* HistoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F19BA2394163000FBBCCC /* HistoriesModel.swift */; };
 		2EDB6D91238BC44600035982 /* Extantions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB6D90238BC44600035982 /* Extantions.swift */; };
 		2EDB6D93238BC47500035982 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB6D92238BC47500035982 /* Constants.swift */; };
 		2EDB6D95238BDCD000035982 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EDB6D94238BDCD000035982 /* GoogleService-Info.plist */; };
@@ -93,6 +95,8 @@
 		2E9F19B12392F3D800FBBCCC /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		2E9F19B32393BB9E00FBBCCC /* videoPlayer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = videoPlayer.jpg; sourceTree = "<group>"; };
 		2E9F19B52393F1FA00FBBCCC /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		2E9F19B82394146600FBBCCC /* HistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVCell.swift; sourceTree = "<group>"; };
+		2E9F19BA2394163000FBBCCC /* HistoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoriesModel.swift; sourceTree = "<group>"; };
 		2EDB6D90238BC44600035982 /* Extantions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extantions.swift; sourceTree = "<group>"; };
 		2EDB6D92238BC47500035982 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2EDB6D94238BDCD000035982 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		2E3F722D2386DA3C0063EEFA /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2E9F19B72394144900FBBCCC /* History */,
 				2E3F7286238722C90063EEFA /* Products */,
 				2E3F728123871DFF0063EEFA /* News */,
 				2E3F7278238713B20063EEFA /* Songs */,
@@ -231,6 +236,7 @@
 				2E9F19AD2392C8C100FBBCCC /* VideosModel.swift */,
 				2E9F19AF2392ED8500FBBCCC /* DictionaryCategoriesModel.swift */,
 				2E9F19B12392F3D800FBBCCC /* StoreModel.swift */,
+				2E9F19BA2394163000FBBCCC /* HistoriesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -335,6 +341,14 @@
 				2EDB6DAA238D186800035982 /* Network.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		2E9F19B72394144900FBBCCC /* History */ = {
+			isa = PBXGroup;
+			children = (
+				2E9F19B82394146600FBBCCC /* HistoryTVCell.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		778BB56B1562F61D316A6134 /* Pods */ = {
@@ -477,6 +491,7 @@
 				2E9F19AE2392C8C100FBBCCC /* VideosModel.swift in Sources */,
 				2E9F19B22392F3D800FBBCCC /* StoreModel.swift in Sources */,
 				2EDB6DAD238D18BB00035982 /* Alert.swift in Sources */,
+				2E9F19B92394146600FBBCCC /* HistoryTVCell.swift in Sources */,
 				2E3F727A238713CC0063EEFA /* SongsTVCell.swift in Sources */,
 				2E3F72382386DEF60063EEFA /* DictionaryCVCell.swift in Sources */,
 				2E9F19AB23919D4100FBBCCC /* AudiosModel.swift in Sources */,
@@ -496,6 +511,7 @@
 				2EDB6D93238BC47500035982 /* Constants.swift in Sources */,
 				2E3F72622386E71B0063EEFA /* Reachability.swift in Sources */,
 				2E3F723A2386DF890063EEFA /* VerbsTVCell.swift in Sources */,
+				2E9F19BB2394163000FBBCCC /* HistoriesModel.swift in Sources */,
 				2E3F727C238713F30063EEFA /* SongsCVCell.swift in Sources */,
 				2E3F72182386D92C0063EEFA /* SceneDelegate.swift in Sources */,
 				2E80FE3E2389324A00D7A501 /* ServiceManager.swift in Sources */,
