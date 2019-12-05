@@ -13,7 +13,8 @@ class SongsTVCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var audios = [AudiosModel]()
-
+    var link: HomeVC?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -59,7 +60,7 @@ extension SongsTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongsCVCell", for: indexPath) as! SongsCVCell
         cell.audios = audios
         cell.index = indexPath.row
-        
+        cell.link = self.link
         cell.tableView.reloadData()
         
         return cell

@@ -14,5 +14,6 @@ target 'UyghurApp' do
     pod 'RxCocoa'
     pod 'ObjectMapper'
     pod 'Firebase/Firestore'
+    pod 'SPStorkController'
 
 end

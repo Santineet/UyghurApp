@@ -274,6 +274,7 @@ PODS:
   - SDWebImage (5.3.2):
     - SDWebImage/Core (= 5.3.2)
   - SDWebImage/Core (5.3.2)
+  - SPStorkController (1.7.9)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -283,6 +284,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SDWebImage
+  - SPStorkController
 
 SPEC REPOS:
   trunk:
@@ -310,6 +312,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SDWebImage
+    - SPStorkController
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -336,7 +339,8 @@ SPEC CHECKSUMS:
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
+  SPStorkController: 36bd84206267232747b19d48852659bd71ede28f
 
-PODFILE CHECKSUM: 4a456a3f795842dd02c48271aa4be0d9a91e8576
+PODFILE CHECKSUM: ac9bb8a1c8c586f3e2b87cabee83db5828708168
 
 COCOAPODS: 1.8.4

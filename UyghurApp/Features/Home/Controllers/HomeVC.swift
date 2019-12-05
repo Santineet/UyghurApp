@@ -9,6 +9,9 @@
 import UIKit
 import RxSwift
 import PKHUD
+import SPStorkController
+import AVFoundation
+import SwiftAudio
 
 class HomeVC: UIViewController {
     
@@ -25,12 +28,28 @@ class HomeVC: UIViewController {
 
     let dispatchGroup = DispatchGroup()
     
+    //MARK: - Player Utils
+    @IBOutlet weak var playerView: UIView!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var playerImage: UIImageView!
+    @IBOutlet weak var songNameLabel: UILabel!
+    @IBOutlet weak var playActivityIndicat: UIActivityIndicatorView!
+
+    var playerr: AVPlayer?
+    let audioPlayer = AudioPlayer()
+    var playr = AVAudioPlayer()
+    var player = AVAudioPlayer()
+    var playing = false
+    var playingIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Главная"
+        self.playerView.isHidden = true
         setupTableView()
         fetchData()
+//        setupPlayer()
     }
     
     //MARK: - setup TableView
@@ -220,6 +239,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SongsTVCell", for: indexPath) as! SongsTVCell
             cell.selectionStyle = .none
             cell.audios = self.audios
+            cell.link = self
             cell.collectionView.reloadData()
             return cell
         case 4:
@@ -248,6 +268,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+        
+        
     }
     
     //MARK: - heightForRowAt
@@ -271,5 +293,150 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
 }
+
+
+extension HomeVC {
+    //MARK: - Player
+    
+    func playPressed(collectionIndex: Int, indexPathRow: Int){
+        let index = indexPathRow + collectionIndex * 3
+        let audio = self.audios[index]
+        guard let url = URL(string: audio.audio_url + ".mp3") else {
+            print("return")
+            return
+        }
+        self.songNameLabel.text = audio.name
+        self.playerImage.sd_setImage(with: URL(string: audio.image_url), placeholderImage: nil)
+        self.pauseButton.isHidden = true
+        self.playerView.isHidden = false
+        self.playActivityIndicat.isHidden = false
+        self.playActivityIndicat.startAnimating()
+        
+        
+        playy(url: url,index: index)
+        
+        //        downloadFileFromURL(url: url)
+        
+    }
+    
+    
+    //    func downloadFileFromURL(url: URL){
+    //
+    //         var downloadTask: URLSessionDownloadTask
+    //         downloadTask = URLSession.shared.downloadTask(with: url, completionHandler: { [weak self](url, response, error) in
+    //             guard let url = url else { return }
+    //             self?.play(url: url)
+    //         })
+    //
+    //         downloadTask.resume()
+    //
+    //     }
+    
+    //    func setupPlayer(){
+    //        audioPlayer.event.stateChange.addListener(self, handleAudioPlayerStateChange)
+    //
+    //    }
+    //
+    //    func handleAudioPlayerStateChange(state: AudioPlayerState) {
+    //        print(";sldkf';lkdf;'sdkfsdkfp3[412-e059-23=049-=w0e9r=42-0qe9r")
+    //    }
+    //
+    
+    
+    
+    
+    
+    
+    
+    
+    func playy(url: URL, index: Int){
+        
+        print("playing \(url)")
+        
+        
+        if playerr != nil, let oldIndex  = self.playingIndex  {
+            if index == oldIndex {
+                if playing   {
+                    print("pause")
+                    self.playing = !self.playing
+                    playerr!.pause()
+                } else {
+                    self.playing = !self.playing
+                    print("play 6576576")
+                    playerr!.play()
+                }
+            }
+        } else {
+            
+            
+            
+            let playerItem = AVPlayerItem(url: url)
+    
+            self.playerr = AVPlayer(playerItem:playerItem)
+            playerr!.volume = 1.0
+            self.playingIndex = index
+            if playing {
+                print("pause")
+                self.playing = !self.playing
+                playerr!.pause()
+            } else {
+                self.playing = !self.playing
+                print("play")
+                playerr!.play()
+            }
+        }
+        self.pauseButton.isHidden = false
+        self.playActivityIndicat.stopAnimating()
+        self.playActivityIndicat.isHidden = true
+
+        //                self.playerr = nil
+           
+    }
+//
+//
+//    func downloadFileFromURL(url: URL){
+//
+//        var downloadTask:URLSessionDownloadTask
+//        downloadTask = URLSession.shared.downloadTask(with: url, completionHandler: { [weak self](URL, response, error) -> Void in
+//            self?.playy(url: URL!)
+//        })
+//
+//        downloadTask.resume()
+//
+//    }
+//
+    
+//     func play(url: URL) {
+//              print("playing \(url)")
+//
+//           DispatchQueue.main.async {
+//
+//           do {
+//
+//            self.player = try AVAudioPlayer(contentsOf: url)
+//            if self.player.isPlaying {
+//                self.player.stop()
+//                      self.player = try AVAudioPlayer(contentsOf: url)
+//                  }
+//                  self.player.prepareToPlay()
+//                  self.player.volume = 1.0
+//                  self.player.play()
+//              } catch let error as NSError {
+////                  self.player = nil
+//                self.playerView.isHidden = true
+//                Alert.displayAlert(title:"", message: "Произошла ошибка", vc: self)
+//
+//                print(error.localizedDescription)
+//              } catch {
+//                Alert.displayAlert(title: "", message: "Произошла ошибка", vc: self)
+//                self.playerView.isHidden = true
+//                  print("AVAudioPlayer init failed")
+//              }
+//
+//          }
+//    }
+
+
+}
+
