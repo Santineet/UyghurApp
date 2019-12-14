@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  UyghurApp
+
+  Created by Avazbek Kodiraliev on 11/22/19.
+  Copyright © 2019 YashlikAvazi. All rights reserved.
+*/
+
+"homeNavTitle" = "Home";
+"moreNavTitle" = "More";
+"dictNavTitle" = "Dictionary";
+"translateNavTitle" = "Translate";
+"storeNavTitle" = "Store";
+"newsNavTitle" = "News";
+"historyNavTitle" = "Histories";
+"multimediaNavTitle" = "Multimedia";
+"aboutUsNavTitle" = "О нас";
+"infoNavTitle" = "Information";
+
+"dictionaryLabel" = "Dictionary";
+"translateLabel" = "Translate";
+"storeLabel" = "Store";
+"newsLabel" = "News";
+"historiesLabel" = "News";
+"multimedia" = "Multimedia";
+"videosLabel" = "Videos";
+"audiosLabel" = "Audios";
+"allLabel" = "All";
+"aboutUsLabel" = "О нас";
+"searchPlaceholder" = "Search";
+
+//UIAlertController
+"settingsAlertTitle" = "Sozlamalar";
+"settingsAlertMessage" = "Ishonchingiz komilmi?";
+"languageAlertTitle" = "Tilni tanlash";
+"languageAlertMessage" = "Sizning tanlagan tilingiz Uyghur App uchun asosiy tilga aylanadi!";
+"languageAction" = "Til";
+"logOutAction" = "Chiqish";
+"cancelAction" = "Bekor qilish";
+
+//search
+"emptySearchResultLabel" = "Your search did not match. Please try again.";
+
+//alert
+"installAppMessage" = "Пожалуйста установите";
+"youCnstallAppMessage" = "Вы можете установить в App Store";
+"failedToCall" = "Failed to call on";

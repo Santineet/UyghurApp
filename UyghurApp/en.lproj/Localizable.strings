@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  UyghurApp
+
+  Created by Avazbek Kodiraliev on 11/22/19.
+  Copyright © 2019 YashlikAvazi. All rights reserved.
+*/
+
+"homeNavTitle" = "Home";
+"moreNavTitle" = "More";
+"dictNavTitle" = "Dictionary";
+"translateNavTitle" = "Translations";
+"storeNavTitle" = "Store";
+"newsNavTitle" = "News";
+"videosNavTitle" = "Videos";
+"audiosNavTitle" = "Audios";
+"historyNavTitle" = "Uyghur History";
+"multimediaNavTitle" = "Multimedia";
+"aboutUsNavTitle" = "About Us";
+"infoNavTitle" = "Information";
+
+"dictionaryLabel" = "Dictionary";
+"translateLabel" = "Translations";
+"storeLabel" = "Store";
+"newsLabel" = "News";
+"historiesLabel" = "Uyghur History";
+"multimedia" = "Multimedia";
+"videosLabel" = "Videos";
+"audiosLabel" = "Audios";
+"allLabel" = "See All";
+"aboutUsLabel" = "О нас";
+"readLabel" = "Read";
+"forYourLabel" = "For your";
+"importantLabel" = "Important";
+"searchPlaceholder" = "Search";
+
+//UIAlertController
+"settingsAlertTitle" = "Settings";
+"settingsAlertMessage" = "Are you sure?";
+"languageAlertTitle" = "Language selection";
+"languageAlertMessage" = "Your chosen language will become the main language for Uyghur App!";
+"languageAction" = "Language";
+"logOutAction" = "Log out";
+"cancelAction" = "Cancel";
+
+
+//search
+"emptySearchResultLabel" = "Your search did not match. Please try again.";
+
+//alert
+"installAppMessage" = "Please install";
+"youCnstallAppMessage" = "You can install on the App Store";
+"failedToCall" = "Failed to call on";

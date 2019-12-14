@@ -1,0 +1,60 @@
+
+/* Class = "UILabel"; text = "20$"; ObjectID = "0GO-Qa-AZK"; */
+"0GO-Qa-AZK.text" = "20$";
+
+/* Class = "UILabel"; text = "Словарь"; ObjectID = "0xS-pK-WAY"; */
+"0xS-pK-WAY.text" = "Словарь";
+
+/* Class = "UILabel"; text = "Главный герой — 27-летний Илья Горюнов, семь лет отсидевший в тюрьме по ложному обвинению в распространении наркотиков. Когда Илья выходит на свободу, он понимает, что прежняя жизнь, по которой он тосковал, разрушена, и вернуться к ней он больше не сможет."; ObjectID = "22L-oc-WHZ"; */
+"22L-oc-WHZ.text" = "Главный герой — 27-летний Илья Горюнов, семь лет отсидевший в тюрьме по ложному обвинению в распространении наркотиков. Когда Илья выходит на свободу, он понимает, что прежняя жизнь, по которой он тосковал, разрушена, и вернуться к ней он больше не сможет.";
+
+/* Class = "UIButton"; normalTitle = "Все"; ObjectID = "5B3-3v-QoA"; */
+"5B3-3v-QoA.normalTitle" = "Все";
+
+/* Class = "UIButton"; normalTitle = "Все"; ObjectID = "5nY-Zi-fSa"; */
+"5nY-Zi-fSa.normalTitle" = "Все";
+
+/* Class = "UINavigationItem"; title = "Переводчик"; ObjectID = "8SA-m0-hlA"; */
+"8SA-m0-hlA.title" = "Переводчик";
+
+/* Class = "UILabel"; text = "Видео"; ObjectID = "8if-u0-vVv"; */
+"8if-u0-vVv.text" = "Видео";
+
+/* Class = "UILabel"; text = "Товары"; ObjectID = "A4j-rM-DxR"; */
+"A4j-rM-DxR.text" = "Товары";
+
+/* Class = "UIButton"; normalTitle = "Все"; ObjectID = "CK0-Te-aik"; */
+"CK0-Te-aik.normalTitle" = "Все";
+
+/* Class = "UINavigationItem"; title = "Словарь"; ObjectID = "I2j-5M-d21"; */
+"I2j-5M-d21.title" = "Словарь";
+
+/* Class = "UIButton"; normalTitle = "Все"; ObjectID = "Iz9-8e-E7L"; */
+"Iz9-8e-E7L.normalTitle" = "Все";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "MJh-gb-Tc0"; */
+"MJh-gb-Tc0.text" = "Label";
+
+/* Class = "UILabel"; text = "FKA twigs - LP1"; ObjectID = "RyY-Cw-l7H"; */
+"RyY-Cw-l7H.text" = "FKA twigs - LP1";
+
+/* Class = "UINavigationItem"; title = "Магазин"; ObjectID = "ZcV-hY-SWy"; */
+"ZcV-hY-SWy.title" = "Магазин";
+
+/* Class = "UILabel"; text = "Labelweijr  oiewfo ijew iuwehfiu whefi whefiu whefwqh fwe opqjw"; ObjectID = "bq9-fH-bwR"; */
+"bq9-fH-bwR.text" = "Labelweijr  oiewfo ijew iuwehfiu whefi whefiu whefwqh fwe opqjw";
+
+/* Class = "UIButton"; normalTitle = "Все"; ObjectID = "fV6-Z1-wai"; */
+"fV6-Z1-wai.normalTitle" = "Все";
+
+/* Class = "UILabel"; text = "Two Weeks"; ObjectID = "lJP-iO-5LG"; */
+"lJP-iO-5LG.text" = "Two Weeks";
+
+/* Class = "UILabel"; text = "product name"; ObjectID = "mHc-HT-xq2"; */
+"mHc-HT-xq2.text" = "product name";
+
+/* Class = "UILabel"; text = "Новости"; ObjectID = "sF1-Uo-gLR"; */
+"sF1-Uo-gLR.text" = "Новости";
+
+/* Class = "UILabel"; text = "Музыка"; ObjectID = "vdK-jb-Zxc"; */
+"vdK-jb-Zxc.text" = "Музыка";

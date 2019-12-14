@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  UyghurApp
+
+  Created by Avazbek Kodiraliev on 11/22/19.
+  Copyright © 2019 YashlikAvazi. All rights reserved.
+*/
+
+"homeNavTitle" = "Главная";
+"moreNavTitle" = "Ещё";
+"dictNavTitle" = "Словарь";
+"translateNavTitle" = "Переводы";
+"storeNavTitle" = "Магазин";
+"newsNavTitle" = "Новости";
+"videosNavTitle" = "Видео";
+"audiosNavTitle" = "Аудио";
+"historyNavTitle" = "История уйгуров";
+"multimediaNavTitle" = "Мультимедиа";
+"aboutUsNavTitle" = "О нас";
+"infoNavTitle" = "Информация";
+
+"dictionaryLabel" = "Словарь";
+"translateLabel" = "Переводы";
+"storeLabel" = "Магазин";
+"newsLabel" = "Новости";
+"historiesLabel" = "История уйгуров";
+"multimedia" = "Мультимедиа";
+"videosLabel" = "Видео";
+"audiosLabel" = "Аудио";
+"allLabel" = "Все";
+"aboutUsLabel" = "О нас";
+"readLabel" = "Читать";
+"forYourLabel" = "Для вас";
+"importantLabel" = "Важные";
+"searchPlaceholder" = "Поиск";
+
+//UIAlertController
+"settingsAlertTitle" = "Настройки";
+"settingsAlertMessage" = "Вы уверены?";
+"languageAlertTitle" = "Выбор языка";
+"languageAlertMessage" = "Выбранный вами язык станет основным языком для Uyghur App!";
+"languageAction" = "Язык";
+"logOutAction" = "Выйти";
+"cancelAction" = "Отмена";
+
+//search
+"emptySearchResultLabel" = "По вашему запросу нет результатов. Попробуйте ещё раз.";
+
+//alert
+"installAppMessage" = "Пожалуйста установите";
+"youCnstallAppMessage" = "Вы можете установить в App Store";
+"failedToCall" = "Не удалось позвонить на";
