@@ -28,6 +28,9 @@ class MultimediaVC: UITableViewController, UICollectionViewDelegate, UICollectio
     var multimediaVM: MultimediaVM?
     let dispose = DisposeBag()
     
+    var playingIndex: Int?
+    var playing: Bool = false
+    
     var filteredVideos = [Video]()
     var videos = [Video]() {
         didSet {
@@ -205,6 +208,8 @@ class MultimediaVC: UITableViewController, UICollectionViewDelegate, UICollectio
             video = self.filteredVideos[indexPath.row]
         } else { video =  self.videos[indexPath.item] }
         
+        HidePlayer.instance.hide()
+        
         let player = AVPlayer(url: URL(string: video.video_url)!)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
@@ -242,7 +247,76 @@ class MultimediaVC: UITableViewController, UICollectionViewDelegate, UICollectio
             audio = self.filteredAudios[indexPath.row]
         } else { audio =  self.audios[indexPath.item] }
         cell.audio = audio
+        
+        if let index = playingIndex, index == indexPath.row {
+             
+             if playing {
+                 let pauseImage = UIImage(systemName: "pause.fill")
+                cell.playImageView.image = pauseImage
+             } else {
+                 let playImage = UIImage(systemName: "play.fill")
+                 cell.playImageView.image = playImage
+             }
+         } else {
+             let playImage = UIImage(systemName: "play.fill")
+             cell.playImageView.image = playImage
+         }
+        
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var audio: Audio
+
+        if isFiltering {
+            audio = self.filteredAudios[indexPath.row]
+        } else { audio =  self.audios[indexPath.item] }
+                
+        let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
+        mainTabBarController?.playerDetailsView.delegate = self
+        mainTabBarController?.playerDetailsView.isHidden = false
+        mainTabBarController?.maximizePlayerDetails(song: audio, playlistSongs: audios)
+        self.playingIndex = indexPath.row
+        self.playing = true
+        self.tableView.reloadData()
+        
+    }
+}
+
+extension MultimediaVC: ChangePlayingTrackDelegate {
+    func changePlayingTrack(type: TypeOfChange) {
+        switch  type { 
+        case .Next:
+           if self.playingIndex != nil {
+                self.playing = true
+                self.playingIndex! += 1
+                self.tableView.reloadData()
+            }
+        case .Pause:
+            self.playing = false
+            self.tableView.reloadData()
+        case .Previous:
+            if self.playingIndex != nil {
+                self.playingIndex! -= 1
+                self.tableView.reloadData()
+            }
+        case .NewPlaylist:
+            if self.playingIndex != nil {
+                self.playing = true
+                self.playingIndex! = 0
+                self.tableView.reloadData()
+            }
+        case .PlayFromTheEnd:
+            if playingIndex != nil {
+                let count = self.audios.count
+                self.playingIndex! = count - 1
+                self.tableView.reloadData()
+             }
+            
+        case .Play:
+            self.playing = true
+            self.tableView.reloadData()
+        }
+    }
 }

@@ -81,7 +81,9 @@ class MainTabBarController: UITabBarController {
         bottomAnchorConstraint = playerDetailsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
         bottomAnchorConstraint.isActive = true
         minimizedTopAnchorConstraint = playerDetailsView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
-        print(tabBar.frame.height)
+        //////
+                minimizedTopAnchorConstraint.isActive = true
+        /////////
         playerDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         

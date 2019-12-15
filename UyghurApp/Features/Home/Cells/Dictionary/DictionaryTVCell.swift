@@ -33,7 +33,7 @@ class DictionaryTVCell: UITableViewCell {
     }
     
     @objc func didTappedAllDictionariesLabel() {
-        
+        HidePlayer.instance.hide()
         self.link?.didTappedAllDictionariesLabel()
     }
     
@@ -80,6 +80,7 @@ extension DictionaryTVCell: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func didTappedDictionary(category: DictionaryCategoriesModel) {
+        HidePlayer.instance.hide()
         self.link?.didTappedDictionary(dictCategory: category)
     }
     

@@ -150,8 +150,8 @@ class PlayerDetailsView: UIView {
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { [unowned self] event in
             if self.player.rate == 0.0 {
-              
                 self.player.play()
+                self.delegate?.changePlayingTrack(type: .Play)
                 let pauseImage = UIImage(systemName: "pause.fill")
                 self.playPauseButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
                 self.miniPlayPauseButton.setImage(pauseImage, for: .normal)
@@ -166,6 +166,7 @@ class PlayerDetailsView: UIView {
         commandCenter.pauseCommand.addTarget { [unowned self] event in
             if self.player.rate == 1.0 {
                 self.player.pause()
+                self.delegate?.changePlayingTrack(type: .Pause)
                 let playImage = UIImage(systemName: "play.fill")
                 self.playPauseButton.setImage(#imageLiteral(resourceName: "ic_play"), for: .normal)
                 self.miniPlayPauseButton.setImage(playImage, for: .normal)
@@ -253,9 +254,9 @@ class PlayerDetailsView: UIView {
     
     @objc func handlePlayPause() {
         print("Trying to play and pause")
-        delegate?.changePlayingTrack(type: .Pause)
         if player.timeControlStatus == .paused {
             player.play()
+            delegate?.changePlayingTrack(type: .Play)
             enlargeEpisodeImageView()
             let pauseImage = UIImage(systemName: "pause.fill")
             playPauseButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
@@ -263,6 +264,7 @@ class PlayerDetailsView: UIView {
             self.setupElapsedTime(playbackRate: 1)
         } else {
             player.pause()
+            delegate?.changePlayingTrack(type: .Pause)
             shrinkEpisodeImageView()
             let playImage = UIImage(systemName: "play.fill")
             playPauseButton.setImage(#imageLiteral(resourceName: "ic_play"), for: .normal)
@@ -331,6 +333,9 @@ class PlayerDetailsView: UIView {
     //MARK: - Play Method
     fileprivate func playSong() {
         guard let url = URL(string: song.audio_url) else { return }
+        
+        let pauseImage = UIImage(systemName: "pause.fill")
+        miniPlayPauseButton.setImage(pauseImage, for: .normal)
         self.playPauseButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)

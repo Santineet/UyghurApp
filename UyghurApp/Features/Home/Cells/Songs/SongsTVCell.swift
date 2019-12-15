@@ -129,27 +129,34 @@ extension SongsTVCell: ChangePlayingTrackDelegate {
             }
             
         case .Previous:
+            
             if playingIndex != nil {
                 self.playingIndex! -= 1
                 self.collectionView.reloadData()
             }
+            
         case .Pause:
-            self.playing = !self.playing
+            
+            self.playing = false
             self.collectionView.reloadData()
+            
         case .NewPlaylist:
+            
             if playingIndex != nil {
                 self.playingIndex! = 0
                 self.collectionView.reloadData()
             }
+            
         case .PlayFromTheEnd:
+            
             if playingIndex != nil {
                 let count = audios.count
                 self.playingIndex = count - 1
                 self.collectionView.reloadData()
             }
             
-        case .Stop:
-            self.playing = false
+        case .Play:
+            self.playing = true
             self.collectionView.reloadData()
         }
     }
@@ -157,3 +164,5 @@ extension SongsTVCell: ChangePlayingTrackDelegate {
 
 
 
+
+ 

@@ -36,7 +36,7 @@ class VideosTVCell: UITableViewCell {
     }
 
     @objc func didTappedVideosLabel() {
-        
+        HidePlayer.instance.hide()
         self.link?.didTappedVideosLabel()
     }
     
@@ -71,6 +71,7 @@ extension VideosTVCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let video = self.videos[indexPath.row]
+        HidePlayer.instance.hide()
         self.link?.didTappedVideo(url: video.video_url)
     }
 }

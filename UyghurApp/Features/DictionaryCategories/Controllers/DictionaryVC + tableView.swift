@@ -26,6 +26,7 @@ extension DictionaryVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        HidePlayer.instance.hide()
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DictDetailVC") as? DictDetailVC {
             
             if let navigator = navigationController {

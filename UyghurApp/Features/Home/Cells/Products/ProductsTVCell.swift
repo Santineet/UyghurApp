@@ -24,7 +24,7 @@ class ProductsTVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         setupCollectionView()
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTappedAllProductsLabel))
         self.allProductsLabel.isUserInteractionEnabled = true
@@ -40,7 +40,7 @@ class ProductsTVCell: UITableViewCell {
     }
     
     @objc func didTappedAllProductsLabel() {
-        
+        HidePlayer.instance.hide()
         self.link?.didTappedAllProductsLabel()
     }
     
@@ -67,6 +67,8 @@ extension ProductsTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        HidePlayer.instance.hide()
+        
         
         let product = self.products[indexPath.row]
         self.link?.didTappedProduct(product: product)

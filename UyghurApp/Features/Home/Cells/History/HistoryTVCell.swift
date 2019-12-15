@@ -45,13 +45,13 @@ class HistoryTVCell: UITableViewCell {
     }
 
     @objc func didTappedAllHistoriesLabel() {
-        
+        HidePlayer.instance.hide()
         self.link?.didTappedAllHistoriesLabel()
     }
     
     @objc func didTappedFirstIV() {
-        
         if self.histories.count >= 1 {
+            HidePlayer.instance.hide()
             self.link?.didTappedHistoryLabel(history: self.histories[0])
         }
     }
@@ -59,6 +59,7 @@ class HistoryTVCell: UITableViewCell {
     @objc func didTappedSecondIV() {
         
         if self.histories.count >= 2 {
+            HidePlayer.instance.hide()
             self.link?.didTappedHistoryLabel(history: self.histories[1])
         }
     }
@@ -66,6 +67,7 @@ class HistoryTVCell: UITableViewCell {
     @objc func didTappedThirdIV() {
         
         if self.histories.count >= 3 {
+            HidePlayer.instance.hide()
             self.link?.didTappedHistoryLabel(history: self.histories[2])
         }
     }

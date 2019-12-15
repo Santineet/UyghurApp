@@ -31,7 +31,8 @@ extension TranslationVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         var translation: Translation
-        
+        HidePlayer.instance.hide()
+
         if isFiltering {
             translation = self.filteredTranslations[indexPath.row]
         } else { translation =  self.translations[indexPath.item] }

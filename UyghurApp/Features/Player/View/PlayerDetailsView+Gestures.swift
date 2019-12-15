@@ -34,7 +34,7 @@ extension PlayerDetailsView {
             let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
             mainTabBarController?.playerDetailsView.player.pause()
             mainTabBarController?.playerDetailsView.isHidden = true
-            delegate?.changePlayingTrack(type: .Stop)
+            delegate?.changePlayingTrack(type: .Pause)
         }
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

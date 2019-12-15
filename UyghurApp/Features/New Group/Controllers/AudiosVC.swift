@@ -157,7 +157,7 @@ class AudiosVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
             audio = self.filteredAudios[indexPath.row]
         } else { audio =  self.audios[indexPath.item] }
-        
+                
         let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
         mainTabBarController?.playerDetailsView.delegate = self
         mainTabBarController?.playerDetailsView.isHidden = false
@@ -230,14 +230,16 @@ extension AudiosVC: UISearchBarDelegate, UISearchResultsUpdating {
 extension AudiosVC: ChangePlayingTrackDelegate {
     func changePlayingTrack(type: TypeOfChange) {
         
+       
         switch  type {
+      
         case .Next:
             if self.playingIndex != nil {
                 self.playingIndex! += 1
                 self.tableView.reloadData()
             }
         case .Pause:
-            self.playing = !self.playing
+            self.playing = false
             self.tableView.reloadData()
         case .Previous:
             if self.playingIndex != nil {
@@ -255,9 +257,9 @@ extension AudiosVC: ChangePlayingTrackDelegate {
                 self.playingIndex! = count - 1
                 self.tableView.reloadData()
             }
-            
-        case .Stop:
-            self.playing = false
+
+        case .Play:
+            self.playing = true
             self.tableView.reloadData()
         }
     }

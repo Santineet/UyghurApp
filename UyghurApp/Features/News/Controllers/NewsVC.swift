@@ -190,9 +190,12 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         var new: New
+        HidePlayer.instance.hide()
+
         if isFiltering {
             new = self.filteredNews[indexPath.row]
         } else { new =  self.news[indexPath.item] }
+        
         
         if new.video_url != "" {
             let videoURL = URL(string: new.video_url)
@@ -212,7 +215,8 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     }
     
     func didTappedReadButton(new: New?) {
-        
+        HidePlayer.instance.hide()
+
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDetailVC") as? NewDetailVC {
             if let navigator = navigationController {
                 viewController.new = new

@@ -28,6 +28,8 @@ extension StoreVC: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var store: Store
+        HidePlayer.instance.hide()
+
         if isFiltering {
             store = self.filteredStories[indexPath.row]
         } else { store =  self.stories[indexPath.item] }
