@@ -184,6 +184,7 @@ class HistoriesVC: UITableViewController, UICollectionViewDelegate, UICollection
         
         attributed.append(NSMutableAttributedString(string: history.history_description, attributes: [.font : UIFont.systemFont(ofSize: 16, weight: .regular), .foregroundColor : UIColor.white, NSAttributedString.Key.paragraphStyle: style]))
         
+        
         if history.history_important == "true" {
             
             cell.historyTitle.attributedText = attributed
@@ -198,9 +199,9 @@ class HistoriesVC: UITableViewController, UICollectionViewDelegate, UICollection
         let impHirtories = self.histories.filter { (history) -> Bool in
             history.history_important == "true"
         }
-        
         HidePlayer.instance.hide()
 
+        
         let history = impHirtories[indexPath.item]
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HistoryDetailVC") as? HistoryDetailVC {
             if let navigator = navigationController {
@@ -258,7 +259,7 @@ class HistoriesVC: UITableViewController, UICollectionViewDelegate, UICollection
         let history = self.histories[indexPath.item]
         
         HidePlayer.instance.hide()
-
+        
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HistoryDetailVC") as? HistoryDetailVC {
             if let navigator = navigationController {
                 viewController.history = history

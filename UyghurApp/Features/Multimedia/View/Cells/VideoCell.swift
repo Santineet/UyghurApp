@@ -19,23 +19,9 @@ class VideoCell: UICollectionViewCell {
             self.videoTitle.text = video?.video_title
             if video!.video_url != "" {
                 DispatchQueue.main.async {
-                    //self.videoIV.image = self.createThumbnailOfVideoFromRemoteUrl(url: self.video!.video_url)
+                    self.videoIV.sd_setImage(with: URL(string: self.video!.video_preview_url))
                 }
             }
         }
     }
-    
-    func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
-        
-        let asset = AVAsset(url: URL(string: url)!)
-        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
-        let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 500)
-        do {
-            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-            let thumbnail = UIImage(cgImage: img)
-            return thumbnail
-        } catch { return nil }
-    }
-    
 }

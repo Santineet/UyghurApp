@@ -37,6 +37,7 @@ class VideosTVCell: UITableViewCell {
 
     @objc func didTappedVideosLabel() {
         HidePlayer.instance.hide()
+
         self.link?.didTappedVideosLabel()
     }
     

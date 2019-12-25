@@ -59,7 +59,6 @@ extension DictionaryCVCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = self.categories[indexPath.row]
-        HidePlayer.instance.hide()
         self.link?.didTappedDictionary(category: category)
     }
     

@@ -17,42 +17,25 @@ class NewCell: UICollectionViewCell {
     @IBOutlet weak var newTitle: UILabel!
     @IBOutlet weak var newDescription: UILabel!
     @IBOutlet weak var readButton: UIButton!
-    @IBOutlet weak var playVideoButton: UIButton!
+    @IBOutlet weak var playVideoIV: UIImageView!
     
     var new: New? {
         didSet {
-            self.layer.backgroundColor = UIColor.white.cgColor
-            self.layer.shadowColor = UIColor.lightGray.cgColor
-            self.layer.shadowOffset = .zero
-            self.layer.shadowOpacity = 0.8
-            self.layer.masksToBounds = false
-            
             self.readButton.setTitle("readLabel".localized, for: .normal)
             self.newTitle.text = new?.title
             self.newDescription.text = new?.new_description
             if new!.video_url != "" {
-                //self.newImageOrVideo.image = self.createThumbnailOfVideoFromRemoteUrl(url: self.new!.video_url)
-                self.playVideoButton.isHidden = false
+                DispatchQueue.main.async {
+                    self.newImageOrVideo.sd_setImage(with: URL(string: self.new!.video_preview_url))
+                }
+                self.playVideoIV.isHidden = false
             }
             
             if new!.image_url != "" {
                 self.newImageOrVideo.sd_setImage(with: URL(string: self.new!.image_url))
-                self.playVideoButton.isHidden = true
+                self.playVideoIV.isHidden = true
             }
         }
-    }
-    
-    func createThumbnailOfVideoFromRemoteUrl(url: String) -> UIImage? {
-        
-        let asset = AVAsset(url: URL(string: url)!)
-        let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-        assetImgGenerate.appliesPreferredTrackTransform = true
-        let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 600)
-        do {
-            let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-            let thumbnail = UIImage(cgImage: img)
-            return thumbnail
-        } catch { return nil }
     }
     
     override func awakeFromNib() {
@@ -61,7 +44,7 @@ class NewCell: UICollectionViewCell {
         newTitle.isUserInteractionEnabled = true
         newDescription.isUserInteractionEnabled = true
         readButton.isUserInteractionEnabled = true
-        playVideoButton.isUserInteractionEnabled = true
+        playVideoIV.isUserInteractionEnabled = true
         
         newImageOrVideo.layer.cornerRadius = 8
         newImageOrVideo.layer.masksToBounds = true
@@ -75,20 +58,3 @@ class NewCell: UICollectionViewCell {
     }
     
 }
-
-
-/*
- if new!.video_url != "" {
- DispatchQueue.main.async {
- self.newImageOrVideo.image = self.createThumbnailOfVideoFromRemoteUrl(url: self.new!.video_url)
- self.playVideoButton.isHidden = false
- }
- }
- 
- if new!.image_url != "" {
- DispatchQueue.main.async {
- self.newImageOrVideo.sd_setImage(with: URL(string: self.new!.image_url))
- self.playVideoButton.isHidden = true
- }
- }
- */

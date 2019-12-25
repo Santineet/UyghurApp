@@ -15,8 +15,7 @@ class AudiosVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
-    var playingIndex: Int?
-    var playing: Bool = false
+
     
     var multimediaVM: MultimediaVM?
     let dispose = DisposeBag()
@@ -57,6 +56,9 @@ class AudiosVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
+        mainTabBarController?.playerDetailsView.audiosDelegate = self
         
         setupAudiosListener()
         setupSearchController()
@@ -157,13 +159,12 @@ class AudiosVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
             audio = self.filteredAudios[indexPath.row]
         } else { audio =  self.audios[indexPath.item] }
-                
+        
         let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
-        mainTabBarController?.playerDetailsView.delegate = self
         mainTabBarController?.playerDetailsView.isHidden = false
         mainTabBarController?.maximizePlayerDetails(song: audio, playlistSongs: audios)
-        self.playingIndex = indexPath.row
-        self.playing = true
+        playingIndex = indexPath.row
+        playing = true
         self.tableView.reloadData()
     }
     
@@ -227,39 +228,37 @@ extension AudiosVC: UISearchBarDelegate, UISearchResultsUpdating {
     
 }
 
-extension AudiosVC: ChangePlayingTrackDelegate {
+extension AudiosVC: ChangeAudiosPlayerTrackDelegate {
     func changePlayingTrack(type: TypeOfChange) {
         
-       
         switch  type {
-      
         case .Next:
-            if self.playingIndex != nil {
-                self.playingIndex! += 1
+            if playingIndex != nil {
+//                self.playingIndex! += 1
                 self.tableView.reloadData()
             }
         case .Pause:
-            self.playing = false
+//            self.playing = false
             self.tableView.reloadData()
         case .Previous:
-            if self.playingIndex != nil {
-                self.playingIndex! -= 1
+            if playingIndex != nil {
+//                self.playingIndex! -= 1
                 self.tableView.reloadData()
             }
         case .NewPlaylist:
-            if self.playingIndex != nil {
-                self.playingIndex! = 0
+            if playingIndex != nil {
+//                self.playingIndex! = 0
                 self.tableView.reloadData()
             }
         case .PlayFromTheEnd:
             if playingIndex != nil {
-                let count = self.audios.count
-                self.playingIndex! = count - 1
+//                let count = self.audios.count
+//                self.playingIndex! = count - 1
                 self.tableView.reloadData()
             }
-
+            
         case .Play:
-            self.playing = true
+//            self.playing = true
             self.tableView.reloadData()
         }
     }

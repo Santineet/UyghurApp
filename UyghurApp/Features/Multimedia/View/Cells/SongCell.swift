@@ -13,7 +13,7 @@ class SongCell: UITableViewCell {
     @IBOutlet weak var songIV: UIImageView!
     @IBOutlet weak var songName: UILabel!
     @IBOutlet weak var artistName: UILabel!
-    @IBOutlet weak var playImageView: UIImageView!
+    @IBOutlet weak var playIV: UIImageView!
     
     var audio: Audio? {
         didSet {

@@ -12,7 +12,9 @@ import MediaPlayer
 
 class PlayerDetailsView: UIView {
     
-    var delegate: ChangePlayingTrackDelegate?
+    var homeDelegate: ChangeHomePlayerTrackDelegate?
+    var multimediaDelegate: ChangeMultimediaPlayerTrackDelegate?
+    var audiosDelegate: ChangeAudiosPlayerTrackDelegate?
     
     var song: Audio! {
         didSet {
@@ -150,8 +152,11 @@ class PlayerDetailsView: UIView {
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { [unowned self] event in
             if self.player.rate == 0.0 {
+              
                 self.player.play()
-                self.delegate?.changePlayingTrack(type: .Play)
+                self.homeDelegate?.changePlayingTrack(type: .Play)
+                self.multimediaDelegate?.changePlayingTrack(type: .Play)
+                self.audiosDelegate?.changePlayingTrack(type: .Play)
                 let pauseImage = UIImage(systemName: "pause.fill")
                 self.playPauseButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
                 self.miniPlayPauseButton.setImage(pauseImage, for: .normal)
@@ -166,7 +171,9 @@ class PlayerDetailsView: UIView {
         commandCenter.pauseCommand.addTarget { [unowned self] event in
             if self.player.rate == 1.0 {
                 self.player.pause()
-                self.delegate?.changePlayingTrack(type: .Pause)
+                self.homeDelegate?.changePlayingTrack(type: .Pause)
+                self.multimediaDelegate?.changePlayingTrack(type: .Pause)
+                self.audiosDelegate?.changePlayingTrack(type: .Pause)
                 let playImage = UIImage(systemName: "play.fill")
                 self.playPauseButton.setImage(#imageLiteral(resourceName: "ic_play"), for: .normal)
                 self.miniPlayPauseButton.setImage(playImage, for: .normal)
@@ -217,10 +224,14 @@ class PlayerDetailsView: UIView {
         let prevEpisode: Audio
         if index == 0 {
             let count = playlistSongs.count
-            delegate?.changePlayingTrack(type: .PlayFromTheEnd)
+            homeDelegate?.changePlayingTrack(type: .PlayFromTheEnd)
+            multimediaDelegate?.changePlayingTrack(type: .PlayFromTheEnd)
+            audiosDelegate?.changePlayingTrack(type: .PlayFromTheEnd)
             prevEpisode = playlistSongs[count - 1]
         } else {
-            delegate?.changePlayingTrack(type: .Previous)
+            homeDelegate?.changePlayingTrack(type: .Previous)
+            multimediaDelegate?.changePlayingTrack(type: .Previous)
+            audiosDelegate?.changePlayingTrack(type: .Previous)
             prevEpisode = playlistSongs[index - 1]
         }
         
@@ -243,10 +254,14 @@ class PlayerDetailsView: UIView {
         
         let nextEpisode: Audio
         if index == playlistSongs.count - 1 {
-            delegate?.changePlayingTrack(type: .NewPlaylist)
+            homeDelegate?.changePlayingTrack(type: .NewPlaylist)
+            multimediaDelegate?.changePlayingTrack(type: .NewPlaylist)
+            audiosDelegate?.changePlayingTrack(type: .NewPlaylist)
             nextEpisode = playlistSongs[0]
         } else {
-            delegate?.changePlayingTrack(type: .Next)
+            homeDelegate?.changePlayingTrack(type: .Next)
+            multimediaDelegate?.changePlayingTrack(type: .Next)
+            audiosDelegate?.changePlayingTrack(type: .Next)
             nextEpisode = playlistSongs[index + 1]
         }
         self.song = nextEpisode
@@ -256,7 +271,9 @@ class PlayerDetailsView: UIView {
         print("Trying to play and pause")
         if player.timeControlStatus == .paused {
             player.play()
-            delegate?.changePlayingTrack(type: .Play)
+            homeDelegate?.changePlayingTrack(type: .Play)
+            multimediaDelegate?.changePlayingTrack(type: .Play)
+            audiosDelegate?.changePlayingTrack(type: .Play)
             enlargeEpisodeImageView()
             let pauseImage = UIImage(systemName: "pause.fill")
             playPauseButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
@@ -264,7 +281,9 @@ class PlayerDetailsView: UIView {
             self.setupElapsedTime(playbackRate: 1)
         } else {
             player.pause()
-            delegate?.changePlayingTrack(type: .Pause)
+            homeDelegate?.changePlayingTrack(type: .Pause)
+            multimediaDelegate?.changePlayingTrack(type: .Pause)
+            audiosDelegate?.changePlayingTrack(type: .Pause)
             shrinkEpisodeImageView()
             let playImage = UIImage(systemName: "play.fill")
             playPauseButton.setImage(#imageLiteral(resourceName: "ic_play"), for: .normal)
@@ -336,6 +355,7 @@ class PlayerDetailsView: UIView {
         
         let pauseImage = UIImage(systemName: "pause.fill")
         miniPlayPauseButton.setImage(pauseImage, for: .normal)
+        
         self.playPauseButton.setImage(#imageLiteral(resourceName: "ic_pause"), for: .normal)
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
@@ -371,7 +391,6 @@ class PlayerDetailsView: UIView {
     @IBOutlet weak var miniEpisodeImageView: UIImageView!
     @IBOutlet weak var miniNextButton: UIButton! {
         didSet {
-
             miniNextButton.addTarget(self, action: #selector(handleNextTrack), for: .touchUpInside)
         }
     }
@@ -387,21 +406,20 @@ class PlayerDetailsView: UIView {
         }
     }
     
+    
+    @IBOutlet weak var mainView: UIView!
+    
     fileprivate let shrunkenTransform = CGAffineTransform(scaleX: 0.7, y: 0.7)
     
     fileprivate func shrinkEpisodeImageView() {
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.episodeImageView.transform = self.shrunkenTransform
-            self.imageForBackground.transform = self.shrunkenTransform
-            self.songTextView.transform = self.shrunkenTransform
+            self.mainView.transform = self.shrunkenTransform
         })
     }
     
     fileprivate func enlargeEpisodeImageView() {
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.episodeImageView.transform = .identity
-            self.imageForBackground.transform = .identity
-            self.songTextView.transform = .identity
+            self.mainView.transform = .identity
         })
     }
     
@@ -437,7 +455,6 @@ class PlayerDetailsView: UIView {
         
         let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
         mainTabBarController?.minimizePlayerDetails()
-        
     }
     
     

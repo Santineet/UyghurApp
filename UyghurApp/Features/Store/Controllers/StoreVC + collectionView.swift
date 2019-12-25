@@ -39,13 +39,14 @@ extension StoreVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (self.view.frame.width-18)/2
+        let height = (self.view.frame.height-88)/2
         let store = self.stories[indexPath.item]
         if store.images[0].image_url != "" {
-            if Int(store.images[0].height) >= (Int(self.view.frame.height/3)) {
-                return CGSize(width: width, height: self.view.frame.height/3)
+            if Int(store.images[0].height) >= (Int(height)) {
+                return CGSize(width: width, height: height)
             } else { return CGSize(width: width, height: CGFloat.init(Float(store.images[0].height))) }
         }
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

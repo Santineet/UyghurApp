@@ -34,6 +34,7 @@ class DictionaryTVCell: UITableViewCell {
     
     @objc func didTappedAllDictionariesLabel() {
         HidePlayer.instance.hide()
+
         self.link?.didTappedAllDictionariesLabel()
     }
     

@@ -20,15 +20,27 @@ class SongsTVCell: UITableViewCell {
         }
     }
     var link: HomeVC?
-    var playingIndex: Int?
-    var playing: Bool = false
-    
+//    var playingIndex: Int?
+//    var playing: Bool = false
+//
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTappedAllAudiosLabel))
+        self.allAudiosLabel.isUserInteractionEnabled = true
+        self.allAudiosLabel.addGestureRecognizer(tap)
+        
+        let mainTabBarController =  UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
+        mainTabBarController?.playerDetailsView.homeDelegate = self
         
         setupCollectionView()
     }
     
+    @objc func didTappedAllAudiosLabel() {
+        HidePlayer.instance.hide()
+
+        self.link?.didTappedAllAudiosLabel()
+    }
     
     
     //MARK: - setup CollectionView
@@ -61,7 +73,7 @@ extension SongsTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.playButton.isEnabled = false
         if let index = playingIndex, index == indexPath.row {
             
-            if self.playing {
+            if playing {
                 let pauseImage = UIImage(systemName: "pause.fill")
                 cell.playButton.setImage(pauseImage, for: .normal)
             } else {
@@ -84,23 +96,24 @@ extension SongsTVCell: UICollectionViewDelegate, UICollectionViewDataSource {
         let mainTabBarController =  UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
         mainTabBarController?.maximizePlayerDetails(song: song, playlistSongs: audios)
         mainTabBarController?.playerDetailsView.isHidden = false
-        mainTabBarController?.playerDetailsView.delegate = self
-        self.playing = true
-        self.playingIndex = indexPath.row
+
+        playing = true
+        playingIndex = indexPath.row
+        
         collectionView.reloadData()
     }
     
     
     func playingNextPreck(){
         if playingIndex != nil {
-            self.playingIndex! += 1
+            playingIndex! += 1
             self.collectionView.reloadData()
         }
     }
     
     func playingPreviousPreck(){
         if playingIndex != nil {
-            self.playingIndex! -= 1
+            playingIndex! -= 1
             self.collectionView.reloadData()
         }
     }
@@ -117,52 +130,41 @@ extension SongsTVCell: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension SongsTVCell: ChangePlayingTrackDelegate {
+extension SongsTVCell: ChangeHomePlayerTrackDelegate {
     func changePlayingTrack(type: TypeOfChange) {
         
         switch type {
         case .Next:
             
             if playingIndex != nil {
-                self.playingIndex! += 1
+                playingIndex! += 1
                 self.collectionView.reloadData()
             }
             
         case .Previous:
-            
             if playingIndex != nil {
-                self.playingIndex! -= 1
+                playingIndex! -= 1
                 self.collectionView.reloadData()
             }
-            
         case .Pause:
-            
-            self.playing = false
+            playing = false
             self.collectionView.reloadData()
-            
         case .NewPlaylist:
-            
             if playingIndex != nil {
-                self.playingIndex! = 0
+                playingIndex! = 0
                 self.collectionView.reloadData()
             }
-            
         case .PlayFromTheEnd:
-            
             if playingIndex != nil {
                 let count = audios.count
-                self.playingIndex = count - 1
+                playingIndex = count - 1
                 self.collectionView.reloadData()
             }
             
         case .Play:
-            self.playing = true
+            playing = true
             self.collectionView.reloadData()
         }
     }
 }
 
-
-
-
- 

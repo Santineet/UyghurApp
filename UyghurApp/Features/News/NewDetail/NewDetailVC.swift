@@ -13,7 +13,13 @@ import AVKit
 class NewDetailVC: UIViewController {
 
     @IBOutlet weak var newImageOrVideo: UIImageView!
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var playIV: UIImageView!  {
+           didSet {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didTappedPlayIV))
+            self.playIV.addGestureRecognizer(tap)
+           }
+       }
+    
     @IBOutlet weak var newText: UITextView!
     
     var newTitle: UILabel = {
@@ -40,7 +46,7 @@ class NewDetailVC: UIViewController {
         setValueToLocalizedLabels()
     }
     
-    @IBAction func didTappedPlayButton(_ sender: Any) {
+    @objc func didTappedPlayIV() {
         if new!.video_url != "" {
             presentToAVPlayerVC()
         }

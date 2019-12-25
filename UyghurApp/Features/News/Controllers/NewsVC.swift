@@ -184,7 +184,8 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (self.view.frame.width-18)/2
-        return CGSize(width: width, height: width)
+        let height = (self.view.frame.height-88)/2
+        return CGSize(width: width, height: height)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -195,7 +196,6 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         if isFiltering {
             new = self.filteredNews[indexPath.row]
         } else { new =  self.news[indexPath.item] }
-        
         
         if new.video_url != "" {
             let videoURL = URL(string: new.video_url)
@@ -231,12 +231,13 @@ extension NewsVC: PinterestLayoutDelegate {
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let new = self.news[indexPath.item]
+        let height = (self.view.frame.height-88)/2
         if new.image_url != "" {
-            if new.height >= (Int(self.view.frame.height/3)) {
-                return self.view.frame.height/3
+            if new.height >= (Int(height)) {
+                return height
             } else { return CGFloat(new.height) }
         }
-        return  (self.view.frame.width-18)/2
+        return height
     }
 }
 

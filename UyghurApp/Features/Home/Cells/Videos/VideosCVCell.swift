@@ -17,7 +17,7 @@ class VideosCVCell: UICollectionViewCell {
     
     var video: VideosModel?{
         didSet {
-            self.imagePreview.sd_setImage(with: URL(string: ""))
+            self.imagePreview.sd_setImage(with: URL(string: video!.video_preview_url))
             self.title.text = self.video?.title
         }
     }

@@ -26,9 +26,9 @@ extension DictionaryVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        HidePlayer.instance.hide()
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DictDetailVC") as? DictDetailVC {
-            
+            HidePlayer.instance.hide()
+
             if let navigator = navigationController {
                 let dictCategory = self.dictionaryCategories[indexPath.item]
                 viewController.dictionaryCategory = dictCategory

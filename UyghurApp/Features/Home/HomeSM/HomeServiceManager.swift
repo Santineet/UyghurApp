@@ -19,7 +19,7 @@ class HomeServiceManager: NSObject {
   
     func getHistories(completion: @escaping Completion){
         
-        FIRRefManager.instance.historiesRef.getDocuments { (querySnapshot, error) in
+        FIRRefManager.instance.historiesRef.limit(to: 15).getDocuments { (querySnapshot, error) in
                         
             if let error = error {
                 completion(nil, error)
@@ -41,7 +41,7 @@ class HomeServiceManager: NSObject {
     
     func getStoreProducts(completion: @escaping Completion){
         
-        FIRRefManager.instance.storeRef.getDocuments { (querySnapshot, error) in
+        FIRRefManager.instance.storeRef.limit(to: 15).getDocuments { (querySnapshot, error) in
                         
             if let error = error {
                 completion(nil, error)
@@ -64,7 +64,7 @@ class HomeServiceManager: NSObject {
     
     func getDicCategories(completion: @escaping Completion){
         
-        FIRRefManager.instance.dicCategoriesRef.getDocuments { (querySnapshot, error) in
+        FIRRefManager.instance.dicCategoriesRef.limit(to: 3).getDocuments { (querySnapshot, error) in
                         
             if let error = error {
                 completion(nil, error)
@@ -86,7 +86,7 @@ class HomeServiceManager: NSObject {
     
     func getNews(completion: @escaping Completion){
         
-        FIRRefManager.instance.newsRef.getDocuments { (querySnapshot, error) in
+        FIRRefManager.instance.newsRef.limit(to: 15).getDocuments { (querySnapshot, error) in
                         
             if let error = error {
                 completion(nil, error)
@@ -97,11 +97,6 @@ class HomeServiceManager: NSObject {
                 for document in snapshot.documents {
                  
                     guard let news = Mapper<NewsModel>().map(JSON: document.data()) else { return }
-                    
-                    if news.video_url != "", let url = URL(string: news.video_url){
-                        
-                    }
-                    
                     newsArray.append(news)
                     if newsArray.count == snapshot.documents.count {
                         completion(newsArray, nil)
@@ -113,7 +108,7 @@ class HomeServiceManager: NSObject {
     
     func getAudios(completion: @escaping Completion){
         
-        FIRRefManager.instance.audiosRef.getDocuments { (querySnapshot, error) in
+        FIRRefManager.instance.audiosRef.limit(to: 15).getDocuments { (querySnapshot, error) in
                         
             if let error = error {
                 completion(nil, error)
@@ -134,7 +129,7 @@ class HomeServiceManager: NSObject {
     
     func getVideos(completion: @escaping Completion){
          
-         FIRRefManager.instance.videosRef.getDocuments { (querySnapshot, error) in
+         FIRRefManager.instance.videosRef.limit(to: 15).getDocuments { (querySnapshot, error) in
                          
              if let error = error {
                  completion(nil, error)
@@ -144,11 +139,6 @@ class HomeServiceManager: NSObject {
                  var videosArray = [VideosModel]()
                  for document in snapshot.documents {
                      guard let video = Mapper<VideosModel>().map(JSON: document.data()) else { return }
-                   
-                    if let url = URL(string:  video.video_url){
-                    }
-
-                    
                      videosArray.append(video)
                      if videosArray.count == snapshot.documents.count {
                          completion(videosArray, nil)

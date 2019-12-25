@@ -13,11 +13,12 @@ extension StoreVC: PinterestLayoutDelegate {
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let store = self.stories[indexPath.item]
+        let height = (self.view.frame.height-88)/2
         if store.images.count > 0 {
-            if Int(store.images[0].height) >= (Int(self.view.frame.height/3)) {
-                return self.view.frame.height/3
+            if Int(store.images[0].height) >= (Int(height)) {
+                return height
             } else { return CGFloat.init(Float(store.images[0].height)) }
         }
-        return self.view.frame.height/3
+        return height
     }
 }

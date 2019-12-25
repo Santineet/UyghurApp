@@ -8,13 +8,19 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
 
+var playingIndex: Int?
+
+var playing: Bool = false
+
+class MainTabBarController: UITabBarController {
+    
+    //global variables
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        UINavigationBar.appearance().prefersLargeTitles = true
-
+        
         setupPlayerDetailsView()
     }
     
@@ -26,7 +32,7 @@ class MainTabBarController: UITabBarController {
         minimizedTopAnchorConstraint.isActive = true
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
-           
+            
             self.tabBar.transform = .identity
             self.view.layoutIfNeeded()
             self.playerDetailsView.dismissButton.isHidden = true 
@@ -36,7 +42,7 @@ class MainTabBarController: UITabBarController {
             self.playerDetailsView.miniPlayerView.alpha = 1
         })
     }
-
+    
     
     func maximizePlayerDetails(song: Audio?, playlistSongs: [Audio] = []) {
         tabBar.isHidden = true
@@ -50,19 +56,18 @@ class MainTabBarController: UITabBarController {
         playerDetailsView.playlistSongs = playlistSongs
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-              
-              self.view.layoutIfNeeded()
-              
-              self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
-              
+            
+            self.view.layoutIfNeeded()
+            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+            
             self.playerDetailsView.episodeImageView.alpha = 1
             self.playerDetailsView.episodeImageView.alpha = 1
             self.playerDetailsView.dismissButton.isHidden = false
             self.playerDetailsView.imageForBackground.alpha = 0.7
             self.playerDetailsView.songTextView.alpha = 1
             self.playerDetailsView.miniPlayerView.alpha = 0
-              
-          })
+            
+        })
         
     }
     //MARK:- Setup Functions
@@ -74,19 +79,19 @@ class MainTabBarController: UITabBarController {
     
     fileprivate func setupPlayerDetailsView() {
         print("Setting up PlayerDetailsView")
+        
         view.insertSubview(playerDetailsView, belowSubview: tabBar)
         playerDetailsView.translatesAutoresizingMaskIntoConstraints = false
+        
         maximizedTopAnchorConstraint = playerDetailsView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height)
         maximizedTopAnchorConstraint.isActive = true
         bottomAnchorConstraint = playerDetailsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
         bottomAnchorConstraint.isActive = true
         minimizedTopAnchorConstraint = playerDetailsView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
-        //////
-                minimizedTopAnchorConstraint.isActive = true
-        /////////
+        print(tabBar.frame.height)
         playerDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
     }
-
+    
 }

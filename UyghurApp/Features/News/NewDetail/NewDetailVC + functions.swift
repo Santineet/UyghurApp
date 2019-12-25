@@ -22,12 +22,12 @@ extension NewDetailVC {
         if new.image_url != "" {
             DispatchQueue.main.async {
                 self.newImageOrVideo.sd_setImage(with: URL(string: self.new!.image_url))
-                self.playButton.isHidden = true
+                self.playIV.isHidden = true
             }
         } else if new.video_url != "" {
             DispatchQueue.main.async {
-                //self.newImageOrVideo.image = self.createThumbnailOfVideoFromRemoteUrl(url: new.video_url)
-                self.playButton.isHidden = false
+                self.newImageOrVideo.sd_setImage(with: URL(string: new.video_preview_url))
+                self.playIV.isHidden = false
             }
             
         }
@@ -40,7 +40,7 @@ extension NewDetailVC {
         
         let attributed = NSMutableAttributedString(string: new.title + "\n", attributes: [.font : UIFont.boldSystemFont(ofSize: 20), .foregroundColor : UIColor.black, NSAttributedString.Key.paragraphStyle: style])
         
-        attributed.append(NSMutableAttributedString(string: new.new_description, attributes: [.font : UIFont.systemFont(ofSize: 18, weight: .regular), .foregroundColor : UIColor.lightGray, NSAttributedString.Key.paragraphStyle: style]))
+        attributed.append(NSMutableAttributedString(string: new.new_description, attributes: [.font : UIFont.systemFont(ofSize: 13, weight: .regular), .foregroundColor : UIColor.lightGray, NSAttributedString.Key.paragraphStyle: style]))
         
         self.newText.attributedText = attributed
     }

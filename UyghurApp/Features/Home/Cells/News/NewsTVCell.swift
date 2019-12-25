@@ -37,7 +37,8 @@ class NewsTVCell: UITableViewCell {
     }
 
     @objc func didTappedAllNewsLabel() {
-        
+        HidePlayer.instance.hide()
+
         self.link?.didTappedAllNewsLabel()
     }
     
@@ -48,7 +49,6 @@ class NewsTVCell: UITableViewCell {
     }
     
     func didTappedTitle(new: NewsModel) {
-        HidePlayer.instance.hide()
         self.link?.didTappedNew(new: new)
     }
     
@@ -80,6 +80,7 @@ extension NewsTVCell: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let new = newsArray[indexPath.row]
         HidePlayer.instance.hide()
+
         if new.video_url != "" {
             self.link?.didTappedNewVideo(url: new.video_url)
         } else if new.image_url != "" {

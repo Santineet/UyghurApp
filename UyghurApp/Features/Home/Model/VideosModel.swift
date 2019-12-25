@@ -14,8 +14,7 @@ class VideosModel: NSObject,Mappable {
     var title: String = ""
     var video_name: String = ""
     var video_url: String = ""
-    var images = [UIImage]()
-    var thumbnailIndex: Int?
+    var video_preview_url: String = ""
     
     required convenience init?(map: Map) {
         self.init()
@@ -27,6 +26,7 @@ class VideosModel: NSObject,Mappable {
         title <- map["title"]
         video_name <- map["video_name"]
         video_url <- map["video_url"]
+        video_preview_url <- map["preview_image"]
     }
     
 }

@@ -13,13 +13,21 @@ enum TypeOfChange {
     case Next
     case Previous
     case Pause
-    case Play
     case NewPlaylist
     case PlayFromTheEnd
+    case Play
 }
 
 
-protocol ChangePlayingTrackDelegate {
+protocol ChangeHomePlayerTrackDelegate {
+    func changePlayingTrack(type: TypeOfChange)
+}
+
+protocol ChangeMultimediaPlayerTrackDelegate {
+    func changePlayingTrack(type: TypeOfChange)
+}
+
+protocol ChangeAudiosPlayerTrackDelegate {
     func changePlayingTrack(type: TypeOfChange)
 }
 
@@ -30,8 +38,10 @@ class HidePlayer {
     func hide(){
         let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
         mainTabBarController?.playerDetailsView.player.pause()
-        mainTabBarController?.playerDetailsView.delegate?.changePlayingTrack(type: .Pause)
-        
+        mainTabBarController?.playerDetailsView.homeDelegate?.changePlayingTrack(type: .Pause) 
+        mainTabBarController?.playerDetailsView.audiosDelegate?.changePlayingTrack(type: .Pause)
+        mainTabBarController?.playerDetailsView.multimediaDelegate?.changePlayingTrack(type: .Pause)
+
         mainTabBarController?.playerDetailsView.isHidden = true
     }
 }

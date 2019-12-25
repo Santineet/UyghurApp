@@ -24,10 +24,12 @@ class NewsCVCell: UICollectionViewCell {
         didSet {
             if self.new!.video_url != "" {
                 self.playImage.isHidden = false
-            } else {
+                self.imageNews.sd_setImage(with: URL(string: new!.video_preview_url))
+            } else if self.new?.image_url != "" {
                 self.playImage.isHidden = true
-                self.imageNews.sd_setImage(with: URL(string: new!.image_url), placeholderImage: nil)
+                self.imageNews.sd_setImage(with: URL(string: new!.image_url))
             }
+            
             self.titleNews.text = new!.title
         }
     }

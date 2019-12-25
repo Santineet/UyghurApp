@@ -15,5 +15,4 @@ target 'UyghurApp' do
   pod 'ObjectMapper'
   pod 'SPStorkController'
   pod 'Firebase/Firestore'
-  
 end

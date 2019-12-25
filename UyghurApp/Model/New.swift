@@ -17,6 +17,7 @@ class New: NSObject, Mappable {
     var height: Int = 0
     var width: Int = 0
     var video_url: String = ""
+    var video_preview_url: String = ""
     var new_description: String = ""
     
     required convenience init?(map: Map) {
@@ -31,6 +32,7 @@ class New: NSObject, Mappable {
         width <- map["width"]
         video_url <- map["video_url"]
         new_description <- map["description"]
+        video_preview_url <- map["preview_image"]
     }
     
 }

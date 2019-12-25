@@ -16,12 +16,6 @@ class StoreCell: UICollectionViewCell {
     
     var store: Store? {
         didSet {
-            self.layer.backgroundColor = UIColor.white.cgColor
-            self.layer.shadowColor = UIColor.lightGray.cgColor
-            self.layer.shadowOffset = .zero
-            self.layer.shadowOpacity = 0.8
-            self.layer.masksToBounds = false
-            
             if store!.images.count > 0 {
                 productImage.sd_setImage(with: URL(string: store!.images[0].image_url))
             }

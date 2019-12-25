@@ -20,11 +20,11 @@ extension MultimediaVC {
     }
     
     @objc func didTappedAllAudiosLabel() {
-        HidePlayer.instance.hide()
+        //HidePlayer.instance.hide()
+
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AudiosVC") as? AudiosVC {
             if let navigator = navigationController {
                 navigator.pushViewController(viewController, animated: true) }
         }
     }
 }
-

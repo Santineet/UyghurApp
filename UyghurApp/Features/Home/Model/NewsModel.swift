@@ -17,8 +17,7 @@ class NewsModel: NSObject,Mappable {
     var video_url: String = ""
     var image_url: String = ""
     var descriptionVideo: String = ""
-    var images = [UIImage]()
-    var thumbnailIndex: Int?
+    var video_preview_url: String = ""
     
     required convenience init?(map: Map) {
         self.init()
@@ -32,7 +31,7 @@ class NewsModel: NSObject,Mappable {
         video_url <- map["video_url"]
         image_url <- map["image_url"]
         descriptionVideo <- map["description"]
-
+        video_preview_url <- map["preview_image"]
     }
 
 }
